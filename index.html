@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロジェクト詳細 - アプリオリ</title>
+
+<!-- 丸みを帯びた可愛らしいフォントを読み込み -->
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ＝ 全体の設定 ＝ */
+body {
+    font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'YuRounded', sans-serif;
+    color: #5c4a40; /* 優しいブラウン */
+    text-align: center;
+    padding: 40px 15px 120px; /* 下部に木があるため余白を広めに */
+    margin: 0;
+    
+    /* ポータルサイトと共通の「りんご断面図」背景 */
+    background-color: #fff9f0;
+    background-image: url("data:image/svg+xml,%3Csvg width='150' height='150' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.08'%3E%3Cpath d='M60 100 C35 100, 20 80, 20 50 C20 20, 45 20, 60 40 C75 20, 100 20, 100 50 C100 80, 85 100, 60 100 Z' fill='%23fff' stroke='%23e63946' stroke-width='6'/%3E%3Cpath d='M60 45 C53 55, 53 70, 60 80 C67 70, 67 55, 60 45 Z' fill='%23ffecb3'/%3E%3Cellipse cx='54' cy='62' rx='2.5' ry='6' fill='%235c4a40' transform='rotate(-15 54 62)'/%3E%3Cellipse cx='66' cy='62' rx='2.5' ry='6' fill='%235c4a40' transform='rotate(15 66 62)'/%3E%3Cpath d='M60 40 Q55 25, 70 15' stroke='%235c4a40' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+}
+
+/* ＝ タイトル（プロジェクト名） ＝ */
+h1 {
+    margin: 0 0 30px;
+    font-size: 1.8rem;
+    color: #e63946; /* りんごの赤 */
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    padding: 0 10px;
+}
+/* タイトルの葉っぱ飾り */
+h1::before {
+    content: "";
+    position: absolute;
+    top: -25px;
+    right: -10px;
+    width: 35px;
+    height: 35px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238ab17d'%3E%3Cpath d='M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 7,15.25 10.67,19.34C13,17 19.33,13 17,8Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* ＝ 中央のメインコンテンツ容器 ＝ */
+.main-container {
+    max-width: 700px; /* PCで見ても広がりすぎない丁度いい横幅 */
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ＝ メインカード ＝ */
+.content-card {
+    background: #fffdf5; /* 果肉のクリーム色 */
+    border-radius: 35px; /* 大きめの丸み */
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.12);
+    border: 3px solid #e63946; /* りんごの皮の赤枠 */
+    position: relative;
+    text-align: left; /* 中身の文章は左寄せで読みやすく */
+}
+
+/* カード左上の葉っぱアクセント */
+.content-card::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 25px;
+    width: 35px;
+    height: 35px;
+    background-color: #8ab17d;
+    border-radius: 50% 0 50% 50%;
+    transform: rotate(45deg);
+}
+
+/* ＝ ① 画像スペース ＝ */
+.image-space {
+    width: 100%;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+    background: #eeeada; /* 画像がない時のダミー背景色 */
+}
+
+/* 実際の画像用の設定（枠線からはみ出さない＆スマホ対応） */
+.image-space img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* 画像がまだ無いとき用のダミーテキスト枠 */
+.image-placeholder {
+    padding: 60px 20px;
+    text-align: center;
+    color: #8c7a6b;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 2px dashed #d1cbb7;
+    border-radius: 20px;
+}
+
+/* ＝ ② 説明文スペース ＝ */
+.description-space {
+    font-size: 1rem;
+    line-height: 1.8; /* 行間を広めにしてスマホでも読みやすく */
+    color: #5c4a40;
+    margin-bottom: 30px;
+    padding: 0 5px;
+}
+
+.description-space p {
+    margin: 0 0 1.5em;
+}
+.description-space p:last-child {
+    margin-bottom: 0;
+}
+
+/* ＝ ボタン（ポータルへ戻る導線） ＝ */
+.btn-back {
+    display: block;
+    text-align: center;
+    padding: 15px 20px;
+    background: #8ab17d; /* 安心感のある葉っぱのグリーン */
+    color: white;
+    text-decoration: none;
+    border-radius: 50px; 
+    font-weight: bold;
+    transition: .2s;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 0 #6e9463; /* 立体感 */
+    max-width: 240px;
+    margin: 0 auto; /* ボタンを中央寄せ */
+}
+
+.btn-back:hover {
+    background: #7ca36f;
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #6e9463;
+}
+
+.btn-back:active {
+    transform: translateY(5px);
+    box-shadow: none;
+}
+
+/* ＝ 画面下部の「りんごが実る木」の背景 ＝ */
+.apple-tree-decor {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 150' preserveAspectRatio='xMidYMax slice'%3E%3Cpath d='M0 150 Q150 80 300 120 T600 70 T1000 110 L1000 150 Z' fill='%23a3c995' opacity='0.6'/%3E%3Cpath d='M0 150 Q250 110 500 140 T900 100 T1000 140 L1000 150 Z' fill='%238ab17d' opacity='0.8'/%3E%3Ccircle cx='150' cy='115' r='10' fill='%23e63946'/%3E%3Ccircle cx='350' cy='135' r='12' fill='%23e63946'/%3E%3Ccircle cx='700' cy='105' r='9' fill='%23e63946'/%3E%3Ccircle cx='850' cy='125' r='11' fill='%23e63946'/%3E%3Ccircle cx='80' cy='135' r='8' fill='%23e63946'/%3E%3Ccircle cx='550' cy='115' r='13' fill='%23e63946'/%3E%3Ccircle cx='950' cy='135' r='8' fill='%23e63946'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- プロジェクト名 -->
+<h1>岸との遭遇</h1>
+
+<div class="main-container">
+
+    <div class="content-card">
+        
+        <!-- 📷 画像スペース -->
+        <div class="image-space">
+            <!-- 【画像がある場合】下のコメントアウト（<!-- -->）を外して画像URLを入れてください -->
+            <!-- <img src="ここに画像のURL.jpg" alt="プロジェクト画像"> -->
+            
+            <!-- 【画像がない場合】代わりに以下のダミーテキストが表示されます（画像を入れたら下の3行は消してOK） -->
+            <div class="image-placeholder">
+                📷 ここにスクショ画像などを入れられます<br>
+                &lt;img src="画像URL"&gt; を記述してください
+            </div>
+        </div>
+
+        <!-- ✍ 説明文スペース -->
+        <div class="description-space">
+            <p>
+                ここにプロジェクトの詳しい説明文を記述します。
+                テキストの行間（line-height）を広めに取っているため、スマートフォンなどの縦長画面でも文字がギュッと詰まらず、すっきりと読みやすいレイアウトになっています。
+            </p>
+            <p>
+                段落を分けたいときは、このように &lt;p&gt; タグで囲うことで、自動的に程よい隙間が空くように調整されています。アプリの概要、使い方、開発秘話など、たくさんの文章を書いても綺麗に収まります。
+            </p>
+        </div>
+
+        <!-- ↩ ポータルに戻るボタン -->
+        <a href="index.html" class="btn-back">ポータルに戻る</a>
+
+    </div>
+
+</div>
+
+<!-- 下部の木の装飾（ポータルと共通） -->
+<div class="apple-tree-decor"></div>
+
+</body>
+</html>
